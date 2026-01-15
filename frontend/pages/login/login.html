@@ -14,7 +14,6 @@
 <body>
 
   <div class="login-wrapper">
-
     <div class="login-container">
 
       <!-- LOGO -->
@@ -31,26 +30,28 @@
       <div class="login-error" id="loginError"></div>
 
       <!-- FORM -->
-      <form onsubmit="return false;">
+      <form onsubmit="login(); return false;">
 
         <div class="login-field">
-          <input 
-            type="text" 
-            id="usuario" 
+          <input
+            type="text"
+            id="usuario"
             placeholder="Usuário"
-            autocomplete="username">
+            autocomplete="username"
+          >
         </div>
 
         <div class="login-field">
-          <input 
-            type="password" 
-            id="senha" 
+          <input
+            type="password"
+            id="senha"
             placeholder="Senha"
-            autocomplete="current-password">
+            autocomplete="current-password"
+          >
         </div>
 
         <div class="login-button">
-          <button type="button" onclick="login()">Entrar</button>
+          <button type="submit">Entrar</button>
         </div>
 
       </form>
@@ -61,6 +62,20 @@
         Sistema seguro • Acesso restrito
       </div>
 
+    </div>
+  </div>
+
+  <!-- OVERLAY + LOADER (fora do form) -->
+  <div id="loginOverlay">
+    <div class="dot-spinner">
+      <div class="dot-spinner__dot"></div>
+      <div class="dot-spinner__dot"></div>
+      <div class="dot-spinner__dot"></div>
+      <div class="dot-spinner__dot"></div>
+      <div class="dot-spinner__dot"></div>
+      <div class="dot-spinner__dot"></div>
+      <div class="dot-spinner__dot"></div>
+      <div class="dot-spinner__dot"></div>
     </div>
   </div>
 

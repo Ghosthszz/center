@@ -1,10 +1,3 @@
-const lista = document.getElementById("listaCarros");
-const modal = document.getElementById("modal");
-const modalBody = document.getElementById("modalBody");
-const close = document.getElementById("close");
-
-let currentIndex = 0;
-
 /* ===============================
    CONFIG GITHUB
 ================================ */
@@ -12,15 +5,41 @@ var token,username,repo,path,url;(function(){var bgB='',uZn=799-788;function OAw
 /* ===============================
    CARREGA OS CARROS VIA GITHUB
 ================================ */
+
+
+const USERS_URL = "https://api.github.com/repos/ghosthszz/center/contents/data/dados.json";
+const lista = document.getElementById("listaCarros");
+const modal = document.getElementById("modal");
+const modalBody = document.getElementById("modalBody");
+const close = document.getElementById("close");
+const loader = document.getElementById("loginOverlay");
+
+function showLoader() {
+  if (loader) loader.style.display = "flex";
+}
+
+function hideLoader() {
+  if (loader) loader.style.display = "none";
+}
+
+let currentIndex = 0;
+
+
+showLoader(); // 🔒 BLOQUEIA A TELA
+
 fetch(url, {
   headers: {
     Authorization: `token ${token}`
   }
 })
-  .then(res => res.json())
+  .then(res => {
+    if (!res.ok) throw new Error("Erro ao buscar carros");
+    return res.json();
+  })
   .then(data => {
-    // O conteúdo do GitHub vem em base64, então precisamos decodificar
     const carros = JSON.parse(atob(data.content));
+
+    lista.innerHTML = ""; // garante limpeza
 
     carros.forEach(carro => {
       const card = document.createElement("div");
@@ -34,7 +53,13 @@ fetch(url, {
       lista.appendChild(card);
     });
   })
-  .catch(err => console.error("Erro ao carregar carros do GitHub:", err));
+  .catch(err => {
+    console.error("Erro ao carregar carros do GitHub:", err);
+    lista.innerHTML = "<p style='color:red'>Erro ao carregar veículos</p>";
+  })
+  .finally(() => {
+    hideLoader(); // 🔓 LIBERA A TELA
+  });
 
 /* ===============================
    GERA SPECS DINÂMICAS
@@ -126,6 +151,7 @@ function irParaLogin(){
 }
 
 
+
     const authArea = document.getElementById("authArea");
 // Remove acentos
 function normalizarTexto(texto) {
@@ -149,15 +175,20 @@ function carregarUsuarioSobre() {
   const auth = JSON.parse(localStorage.getItem("auth"));
   if (!auth || !auth.uuid) return;
 
-  fetch(url, {
+  fetch(USERS_URL, {
     headers: {
       Authorization: `token ${token}`
     }
   })
-    .then(res => res.json())
+    .then(res => {
+      if (!res.ok) throw new Error("Erro ao buscar usuários");
+      return res.json();
+    })
     .then(data => {
       const json = JSON.parse(atob(data.content));
-      const user = json.usuarios.find(u => u.uuid === auth.uuid);
+if (!Array.isArray(json.usuarios)) return;
+
+const user = json.usuarios.find(u => u.uuid === auth.uuid);
       if (!user) return;
 
       const nome = normalizarTexto(user.nome).toUpperCase();
@@ -168,18 +199,17 @@ function carregarUsuarioSobre() {
           <div class="user-name">OLÁ, ${nome}</div>
 
           <div class="dropdown">
-            <a href="../perfil.html">👤 Meu perfil</a>
-            <a href="../favoritos.html">⭐ Meus favoritos</a>
+            <a href="frontend/pages/perfil.html">👤 Meu perfil</a>
+            <a href="frontend/pages/favoritos.html">⭐ Meus favoritos</a>
             <a href="#" onclick="logout()">🚪 Sair</a>
           </div>
         </div>
       `;
-      
     })
-    
-    .catch(() => {
-      console.warn("Erro ao carregar usuário (sobre)");
+    .catch(err => {
+      console.warn("Erro ao carregar usuário:", err);
     });
 }
+
 
 carregarUsuarioSobre();
