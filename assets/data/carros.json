@@ -20,27 +20,6 @@
     ]
   },
   {
-    "id": 2,
-    "nome": "BMW 320i",
-    "ano": "2020",
-    "preco": 210000,
-    "km": 58000,
-    "tipo": "Esportivo",
-    "placa": "BGI4E38",
-    "cambio": "",
-    "combustivel": "Gasolina",
-    "cor": "BRANCA",
-    "troca": false,
-    "ipva": true,
-    "licenciado": true,
-    "capa": "assets/img/veiculos/BGI4E38/capa.jpg",
-    "fotos": [
-      "assets/img/veiculos/BGI4E38/BGI4E38_1.jpg",
-      "assets/img/veiculos/BGI4E38/BGI4E38_2.jpg",
-      "assets/img/veiculos/BGI4E38/BGI4E38_3.jpg"
-    ]
-  },
-  {
     "id": 3,
     "fotos": [],
     "nome": "",
@@ -56,24 +35,5 @@
     "ipva": false,
     "licenciado": false,
     "capa": "assets/img/veiculos//capa.jpg"
-  },
-  {
-    "id": 4,
-    "fotos": [
-      "assets/img/veiculos/BGI4E38/BGI4E38_1768500642586_1.jpg"
-    ],
-    "nome": "Parati",
-    "ano": "1988",
-    "preco": 985000,
-    "km": 65000,
-    "tipo": "Esportivo",
-    "placa": "BGI4E38",
-    "cambio": "Manual",
-    "combustivel": "Álcool/Gasolina",
-    "cor": "Coiza",
-    "troca": true,
-    "ipva": true,
-    "licenciado": true,
-    "capa": "assets/img/veiculos/BGI4E38/capa.jpg"
   }
 ]
