@@ -40,26 +40,5 @@
     "ipva": true,
     "licenciado": true,
     "capa": "assets/img/veiculos/BGI4E38/capa.jpg"
-  },
-  {
-    "id": 3,
-    "fotos": [
-      "assets/img/veiculos/76/76_1768501058259_3.jpg",
-      "assets/img/veiculos/76/76_1768501053057_1.jpg",
-      "assets/img/veiculos/76/76_1768501056128_2.jpg"
-    ],
-    "nome": "Copuli",
-    "ano": "2008",
-    "preco": 28,
-    "km": 5,
-    "tipo": "",
-    "placa": "76",
-    "cambio": "",
-    "combustivel": "Diesel",
-    "cor": "Branca",
-    "troca": false,
-    "ipva": true,
-    "licenciado": true,
-    "capa": "assets/img/veiculos/76/capa.jpg"
   }
 ]
