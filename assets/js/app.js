@@ -6,11 +6,27 @@ const close = document.getElementById("close");
 let currentIndex = 0;
 
 /* ===============================
-   CARREGA OS CARROS
+   CONFIG GITHUB
 ================================ */
-fetch("assets/data/carros.json")
+const token = "";
+const username = "ghosthszz";
+const repo = "center";
+const path = "assets/data/carros.json";
+const url = `https://api.github.com/repos/${username}/${repo}/contents/${path}`;
+
+/* ===============================
+   CARREGA OS CARROS VIA GITHUB
+================================ */
+fetch(url, {
+  headers: {
+    Authorization: `token ${token}`
+  }
+})
   .then(res => res.json())
-  .then(carros => {
+  .then(data => {
+    // O conteúdo do GitHub vem em base64, então precisamos decodificar
+    const carros = JSON.parse(atob(data.content));
+
     carros.forEach(carro => {
       const card = document.createElement("div");
       card.className = "card";
@@ -22,7 +38,8 @@ fetch("assets/data/carros.json")
       card.onclick = () => abrirModal(carro);
       lista.appendChild(card);
     });
-  });
+  })
+  .catch(err => console.error("Erro ao carregar carros do GitHub:", err));
 
 /* ===============================
    GERA SPECS DINÂMICAS
@@ -108,21 +125,13 @@ close.onclick = () => modal.style.display = "none";
 window.onclick = e => {
   if (e.target === modal) modal.style.display = "none";
 };
+
 function irParaLogin(){
   window.location.href = "frontend/pages/login/login.html";
 }
 
 
     const authArea = document.getElementById("authArea");
-
-// === CONFIG GITHUB (MESMA DO LOGIN) ===
-const token = "";
-const username = "ghosthszz";
-const repo = "center";
-const path = "data/dados.json";
-
-const url = `https://api.github.com/repos/${username}/${repo}/contents/${path}`;
-
 // Remove acentos
 function normalizarTexto(texto) {
   return texto
@@ -131,7 +140,7 @@ function normalizarTexto(texto) {
 }
 
 function irParaLogin(){
-  window.location.href = "../login/login.html";
+  window.location.href = "frontend/pages/login/login.html";
 }
 
 function logout(){

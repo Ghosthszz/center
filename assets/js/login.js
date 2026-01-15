@@ -56,7 +56,7 @@ localStorage.setItem("auth", JSON.stringify({
         uuid: encontrado.uuid,
         role: "admin"
       }));
-      window.location.href = "../admin.html";
+      window.location.href = "../adm/adm.html";
     }
   })
   .catch(() => {

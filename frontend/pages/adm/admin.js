@@ -5,15 +5,44 @@ if (!auth || auth.role !== "admin") {
 }
 
 // 🔗 GITHUB CONFIG
-const token = "SEU_TOKEN";
+const token = "";
 const username = "ghosthszz";
 const repo = "center";
 
-const carrosPath = "data/carros.json";
+const carrosPath = "assets/data/carros.json";
+const imagensBasePath = "assets/img/veiculos";
 const usuariosPath = "data/dados.json";
 
 const carrosURL = `https://api.github.com/repos/${username}/${repo}/contents/${carrosPath}`;
 const usuariosURL = `https://api.github.com/repos/${username}/${repo}/contents/${usuariosPath}`;
+
+// ================== VARIÁVEIS ==================
+let carrosCache = [];
+let carroEditando = null;
+
+// ================== HELPERS ==================
+function fileToBase64(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => resolve(reader.result.split(",")[1]);
+    reader.onerror = reject;
+    reader.readAsDataURL(file);
+  });
+}
+
+async function uploadImagem(path, base64) {
+  await fetch(`https://api.github.com/repos/${username}/${repo}/contents/${path}`, {
+    method: "PUT",
+    headers: {
+      Authorization: `token ${token}`,
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      message: `Upload ${path}`,
+      content: base64
+    })
+  });
+}
 
 // ================== VEÍCULOS ==================
 async function carregarCarros() {
@@ -21,13 +50,11 @@ async function carregarCarros() {
     headers: { Authorization: `token ${token}` }
   });
   const data = await res.json();
-  const carros = JSON.parse(atob(data.content));
+  carrosCache = JSON.parse(atob(data.content));
 
-  const lista = document.getElementById("listaCarros");
-  lista.innerHTML = "";
-
-  carros.forEach(c => {
-    lista.innerHTML += `
+  listaCarros.innerHTML = "";
+  carrosCache.forEach(c => {
+    listaCarros.innerHTML += `
       <div class="item">
         ${c.nome} - ${c.placa}
         <div>
@@ -39,32 +66,101 @@ async function carregarCarros() {
   });
 }
 
-// ================== SALVAR CARRO ==================
-async function salvarCarro() {
-  const res = await fetch(carrosURL, {
-    headers: { Authorization: `token ${token}` }
-  });
-  const data = await res.json();
-  const carros = JSON.parse(atob(data.content));
+// ================== IMAGENS ==================
+function renderizarImagens() {
+  listaImagens.innerHTML = "";
 
-  const carro = {
-    id: carros.length + 1,
+  if (!carroEditando) return;
+
+  // CAPA
+  listaImagens.innerHTML += `
+    <div class="img-item">
+      <img src="../${carroEditando.capa}" width="120">
+      <strong>Capa</strong>
+    </div>
+  `;
+
+  carroEditando.fotos.forEach((foto, index) => {
+    listaImagens.innerHTML += `
+      <div class="img-item">
+        <img src="../${foto}" width="120">
+        <div>
+          <button onclick="moverImagem(${index}, -1)">⬆️</button>
+          <button onclick="moverImagem(${index}, 1)">⬇️</button>
+          <button onclick="excluirImagem(${index})">🗑️</button>
+        </div>
+      </div>
+    `;
+  });
+}
+
+function moverImagem(index, dir) {
+  const novo = index + dir;
+  if (novo < 0 || novo >= carroEditando.fotos.length) return;
+  [carroEditando.fotos[index], carroEditando.fotos[novo]] =
+  [carroEditando.fotos[novo], carroEditando.fotos[index]];
+  renderizarImagens();
+}
+
+function excluirImagem(index) {
+  if (!confirm("Excluir esta imagem?")) return;
+  carroEditando.fotos.splice(index, 1);
+  renderizarImagens();
+}
+
+// ================== SALVAR / EDITAR ==================
+async function salvarCarro() {
+  const placaValor = placa.value.toUpperCase().replace(/[^A-Z0-9]/g, "");
+  const pastaCarro = `${imagensBasePath}/${placaValor}`;
+  const files = fotos.files;
+
+  let isNovo = !carroEditando;
+
+  if (isNovo && files.length < 1) {
+    alert("Selecione ao menos uma imagem.");
+    return;
+  }
+
+  if (isNovo) {
+    carroEditando = {
+      id: carrosCache.length + 1,
+      fotos: []
+    };
+  }
+
+  Object.assign(carroEditando, {
     nome: nome.value,
     ano: ano.value,
     preco: Number(preco.value),
     km: Number(km.value),
     tipo: tipo.value,
-    placa: placa.value.toUpperCase(),
+    placa: placaValor,
     cambio: cambio.value,
     combustivel: combustivel.value,
     cor: cor.value,
     troca: troca.checked,
     ipva: ipva.checked,
-    licenciado: licenciado.checked,
-    fotos: []
-  };
+    licenciado: licenciado.checked
+  });
 
-  carros.push(carro);
+  if (files.length > 0) {
+    const capaBase64 = await fileToBase64(files[0]);
+    await uploadImagem(`${pastaCarro}/capa.jpg`, capaBase64);
+    carroEditando.capa = `${pastaCarro}/capa.jpg`;
+
+    for (let i = 1; i < files.length; i++) {
+      const base64 = await fileToBase64(files[i]);
+      const nomeFoto = `${placaValor}_${Date.now()}_${i}.jpg`;
+      const path = `${pastaCarro}/${nomeFoto}`;
+      await uploadImagem(path, base64);
+      carroEditando.fotos.push(path);
+    }
+  }
+
+  if (isNovo) carrosCache.push(carroEditando);
+
+  const res = await fetch(carrosURL, { headers: { Authorization: `token ${token}` } });
+  const data = await res.json();
 
   await fetch(carrosURL, {
     method: "PUT",
@@ -74,12 +170,58 @@ async function salvarCarro() {
     },
     body: JSON.stringify({
       message: "Atualizando carros",
-      content: btoa(JSON.stringify(carros, null, 2)),
+      content: btoa(JSON.stringify(carrosCache, null, 2)),
       sha: data.sha
     })
   });
 
   fecharModalCarro();
+  carregarCarros();
+}
+
+// ================== EDITAR / REMOVER ==================
+function editarCarro(placaBusca) {
+  carroEditando = carrosCache.find(c => c.placa === placaBusca);
+  if (!carroEditando) return;
+
+  nome.value = carroEditando.nome;
+  ano.value = carroEditando.ano;
+  preco.value = carroEditando.preco;
+  km.value = carroEditando.km;
+  tipo.value = carroEditando.tipo;
+  placa.value = carroEditando.placa;
+  cambio.value = carroEditando.cambio;
+  combustivel.value = carroEditando.combustivel;
+  cor.value = carroEditando.cor;
+  troca.checked = carroEditando.troca;
+  ipva.checked = carroEditando.ipva;
+  licenciado.checked = carroEditando.licenciado;
+
+  fotos.value = "";
+  renderizarImagens();
+  abrirModalCarro();
+}
+
+async function removerCarro(placaBusca) {
+  if (!confirm("Remover carro?")) return;
+  carrosCache = carrosCache.filter(c => c.placa !== placaBusca);
+
+  const res = await fetch(carrosURL, { headers: { Authorization: `token ${token}` } });
+  const data = await res.json();
+
+  await fetch(carrosURL, {
+    method: "PUT",
+    headers: {
+      Authorization: `token ${token}`,
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      message: "Removendo carro",
+      content: btoa(JSON.stringify(carrosCache, null, 2)),
+      sha: data.sha
+    })
+  });
+
   carregarCarros();
 }
 
@@ -91,11 +233,9 @@ async function carregarUsuarios() {
   const data = await res.json();
   const json = JSON.parse(atob(data.content));
 
-  const lista = document.getElementById("listaUsuarios");
-  lista.innerHTML = "";
-
+  listaUsuarios.innerHTML = "";
   json.usuarios.forEach(u => {
-    lista.innerHTML += `<div class="item">${u.nome} (${u.tipo})</div>`;
+    listaUsuarios.innerHTML += `<div class="item">${u.nome} (${u.tipo})</div>`;
   });
 }
 
@@ -131,17 +271,12 @@ async function salvarUsuario() {
   carregarUsuarios();
 }
 
-// ================== MODAIS ==================
+// ================== MODAIS / LOGOUT ==================
 function abrirModalCarro(){ modalCarro.style.display="flex"; }
-function fecharModalCarro(){ modalCarro.style.display="none"; }
+function fecharModalCarro(){ modalCarro.style.display="none"; carroEditando=null; listaImagens.innerHTML=""; }
 function abrirModalUsuario(){ modalUsuario.style.display="flex"; }
 function fecharModalUsuario(){ modalUsuario.style.display="none"; }
-
-// ================== LOGOUT ==================
-function logout(){
-  localStorage.removeItem("auth");
-  window.location.href = "../login/login.html";
-}
+function logout(){ localStorage.removeItem("auth"); location.href="../login/login.html"; }
 
 // INIT
 carregarCarros();
