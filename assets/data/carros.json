@@ -18,5 +18,26 @@
       "assets/img/veiculos/ABC1D23/secound.jpeg",
       "assets/img/veiculos/ABC1D23/terceira.jpeg"
     ]
+  },
+  {
+    "id": 2,
+    "nome": "BMW 320i",
+    "ano": "2019",
+    "preco": 210000,
+    "km": 92120,
+    "tipo": "Esportivo",
+    "placa": "FQQ2P10",
+    "cambio": "Automático",
+    "combustivel": "Gasolina",
+    "cor": "BRANCA",
+    "troca": false,
+    "ipva": true,
+    "licenciado": true,
+    "capa": "assets/carros/FQQ2P10/capa.jpg",
+    "fotos": [
+      "assets/carros/FQQ2P10/FQQ2P10_1.jpg",
+      "assets/carros/FQQ2P10/FQQ2P10_2.jpg",
+      "assets/carros/FQQ2P10/FQQ2P10_3.jpg"
+    ]
   }
 ]
