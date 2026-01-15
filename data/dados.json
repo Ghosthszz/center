@@ -1,0 +1,16 @@
+{
+  "usuarios": [
+    {
+      "uuid": "9f2c1a7e-1b44-4f3c-a111-001",
+      "usuario": "user1",
+      "senha": "1234",
+      "tipo": "cliente"
+    },
+    {
+      "uuid": "aa99bb88-77cc-66dd-5544-admin",
+      "usuario": "blk",
+      "senha": "copuli",
+      "tipo": "admin"
+    }
+  ]
+}
