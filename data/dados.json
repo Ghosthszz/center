@@ -20,6 +20,13 @@
       "usuario": "gui",
       "senha": "hellen",
       "tipo": "cliente"
+    },
+    {
+      "uuid": "07638622-f610-4981-a7ab-7f4b5d14ec35",
+      "nome": "Anderson Gabanella",
+      "usuario": "and",
+      "senha": "and1",
+      "tipo": "admin"
     }
   ]
 }
