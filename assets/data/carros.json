@@ -18,5 +18,27 @@
       "assets/img/veiculos/ABC1D23/secound.jpeg",
       "assets/img/veiculos/ABC1D23/terceira.jpeg"
     ]
+  },
+  {
+    "id": 2,
+    "fotos": [
+      "assets/img/veiculos/BGI4E38/BGI4E38_1768500778066_1.jpg",
+      "assets/img/veiculos/BGI4E38/BGI4E38_1768500782425_2.jpg",
+      "assets/img/veiculos/BGI4E38/BGI4E38_1768500788700_3.jpg",
+      "assets/img/veiculos/BGI4E38/BGI4E38_1768500793331_4.jpg"
+    ],
+    "nome": "Parati CL",
+    "ano": "1988",
+    "preco": 985000,
+    "km": 65000,
+    "tipo": "Esportivo",
+    "placa": "BGI4E38",
+    "cambio": "Automático",
+    "combustivel": "Álcool/Gasolina",
+    "cor": "Cinza",
+    "troca": false,
+    "ipva": true,
+    "licenciado": true,
+    "capa": "assets/img/veiculos/BGI4E38/capa.jpg"
   }
 ]
