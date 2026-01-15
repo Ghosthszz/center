@@ -18,5 +18,26 @@
       "assets/img/veiculos/ABC1D23/secound.jpeg",
       "assets/img/veiculos/ABC1D23/terceira.jpeg"
     ]
+  },
+  {
+    "id": 2,
+    "nome": "BMW 320i",
+    "ano": "2020",
+    "preco": 210000,
+    "km": 58000,
+    "tipo": "Esportivo",
+    "placa": "BGI4E38",
+    "cambio": "Automático",
+    "combustivel": "Gasolina",
+    "cor": "BRANCA",
+    "troca": false,
+    "ipva": true,
+    "licenciado": true,
+    "capa": "assets/img/veiculos/BGI4E38/capa.jpg",
+    "fotos": [
+      "assets/img/veiculos/BGI4E38/BGI4E38_1.jpg",
+      "assets/img/veiculos/BGI4E38/BGI4E38_2.jpg",
+      "assets/img/veiculos/BGI4E38/BGI4E38_3.jpg"
+    ]
   }
 ]
