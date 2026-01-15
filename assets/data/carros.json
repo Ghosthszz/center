@@ -39,22 +39,5 @@
       "assets/img/veiculos/BGI4E38/BGI4E38_2.jpg",
       "assets/img/veiculos/BGI4E38/BGI4E38_3.jpg"
     ]
-  },
-  {
-    "id": 3,
-    "fotos": [],
-    "nome": "teste",
-    "ano": "2000",
-    "preco": 3100,
-    "km": 21,
-    "tipo": "Esportivo",
-    "placa": "AS",
-    "cambio": "Manual",
-    "combustivel": "Gasolina",
-    "cor": "as",
-    "troca": true,
-    "ipva": true,
-    "licenciado": true,
-    "capa": "assets/img/veiculos/AS/capa.jpg"
   }
 ]
