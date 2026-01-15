@@ -1,7 +1,7 @@
 [
   {
     "id": 1,
-    "nome": "Santa Fé 3.3 v6",
+    "nome": "Santa FÃ© 3.3 v6",
     "ano": "2014",
     "preco": 98000,
     "km": 181000,
@@ -17,27 +17,6 @@
       "assets/img/veiculos/ABC1D23/first.jpeg",
       "assets/img/veiculos/ABC1D23/secound.jpeg",
       "assets/img/veiculos/ABC1D23/terceira.jpeg"
-    ]
-  },
-  {
-    "id": 2,
-    "nome": "BMW 320i",
-    "ano": "2019",
-    "preco": 210000,
-    "km": 92120,
-    "tipo": "Esportivo",
-    "placa": "FQQ2P10",
-    "cambio": "Autom�tico",
-    "combustivel": "Gasolina",
-    "cor": "BRANCA",
-    "troca": false,
-    "ipva": true,
-    "licenciado": true,
-    "capa": "assets/carros/FQQ2P10/capa.jpg",
-    "fotos": [
-      "assets/carros/FQQ2P10/FQQ2P10_1.jpg",
-      "assets/carros/FQQ2P10/FQQ2P10_2.jpg",
-      "assets/carros/FQQ2P10/FQQ2P10_3.jpg"
     ]
   }
 ]
