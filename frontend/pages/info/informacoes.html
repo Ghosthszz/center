@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Informações | Center 3 Multimarcas</title>
+<link rel="stylesheet" href="../../../assets/css/style.css">
+</head>
+<body>
+<header>
+  <nav class="navbar">
+    <div class="nav-left">
+      <img src="../../../assets/img/logo.png" class="logo">
+      <div class="links">
+        <a href="../../../index.html">Home</a>
+        <a href="../../../frontend/pages/info/sobre.html">Sobre Nós</a>
+        <a href="../../../frontend/pages/info/informacoes.html">Informações</a>
+      </div>
+    </div>
+    <div id="authArea">
+  <button class="login-btn" onclick="irParaLogin()">Login</button>
+</div>
+  </nav>
+</header>
+
+<main class="page">
+  <h1>Informações e Contato</h1>
+
+  <div class="info-box">
+    <h3>📍 Endereço</h3>
+    <p>Av. Exemplo, 1234 - Centro</p>
+    <p>Sorocaba - SP</p>
+  </div>
+
+  <div class="info-box">
+    <h3>📞 Telefone</h3>
+    <p>(15) 99999-9999</p>
+  </div>
+
+  <div class="info-box">
+    <h3>💬 WhatsApp</h3>
+    <p>(15) 98888-8888</p>
+  </div>
+
+  <div class="info-box">
+    <h3>📧 E-mail</h3>
+    <p>contato@center3multimarcas.com.br</p>
+  </div>
+
+  <div class="info-box">
+    <h3>🕒 Horário de Funcionamento</h3>
+    <p>Segunda a Sexta: 9h às 18h</p>
+    <p>Sábado: 9h às 14h</p>
+  </div>
+</main>
+
+<footer>
+  © 2026 Center 3 Multimarcas - Todos os direitos reservados
+</footer>
+<script>
+    const authArea = document.getElementById("authArea");
+
+// === CONFIG GITHUB (MESMA DO LOGIN) ===
+const token = "";
+const username = "ghosthszz";
+const repo = "center";
+const path = "data/dados.json";
+
+const url = `https://api.github.com/repos/${username}/${repo}/contents/${path}`;
+
+// Remove acentos
+function normalizarTexto(texto) {
+  return texto
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "");
+}
+
+function irParaLogin(){
+  window.location.href = "../login/login.html";
+}
+
+function logout(){
+  localStorage.removeItem("auth");
+  location.reload();
+}
+
+function carregarUsuarioSobre() {
+  if (!authArea) return;
+
+  const auth = JSON.parse(localStorage.getItem("auth"));
+  if (!auth || !auth.uuid) return;
+
+  fetch(url, {
+    headers: {
+      Authorization: `token ${token}`
+    }
+  })
+    .then(res => res.json())
+    .then(data => {
+      const json = JSON.parse(atob(data.content));
+      const user = json.usuarios.find(u => u.uuid === auth.uuid);
+      if (!user) return;
+
+      const nome = normalizarTexto(user.nome).toUpperCase();
+
+      authArea.innerHTML = `
+        <div class="user-menu">
+          <div class="user-avatar"></div>
+          <div class="user-name">OLÁ, ${nome}</div>
+
+          <div class="dropdown">
+            <a href="../perfil.html">👤 Meu perfil</a>
+            <a href="../favoritos.html">⭐ Meus favoritos</a>
+            <a href="#" onclick="logout()">🚪 Sair</a>
+          </div>
+        </div>
+      `;
+    })
+    .catch(() => {
+      console.warn("Erro ao carregar usuário (sobre)");
+    });
+}
+
+carregarUsuarioSobre();
+
+</script>
+</body>
+</html>

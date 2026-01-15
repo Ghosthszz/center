@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Center 3 Multimarcas</title>
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+
+<header>
+  <nav class="navbar">
+    <div class="nav-left">
+      <img src="assets/img/logo.png" class="logo">
+      <div class="links">
+        <a href="index">Home</a>
+        <a href="frontend/pages/info/sobre.html">Sobre Nós</a>
+        <a href="frontend/pages/info/informacoes.html">Informações</a>
+      </div>
+    </div>
+<div id="authArea">
+  <button class="login-btn" onclick="irParaLogin()">Login</button>
+</div>
+  </nav>
+</header>
+
+<main>
+  <section id="listaCarros" class="grid"></section>
+</main>
+
+<!-- MODAL DETALHES -->
+<div id="modal" class="modal">
+  <div class="modal-content">
+    <span id="close">&times;</span>
+    <div id="modalBody"></div>
+  </div>
+</div>
+
+<footer>
+  © 2026 Center 3 Multimarcas - Todos os direitos reservados
+</footer>
+
+<script src="assets/js/app.js"></script>
+</body>
+</html>

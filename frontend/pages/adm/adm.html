@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Painel Admin | Center 3</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="admin.css">
+</head>
+
+<body>
+
+<header class="admin-header">
+  <h1>Painel Administrativo</h1>
+  <button class="logout-btn" onclick="logout()">Sair</button>
+</header>
+
+<main class="admin-container">
+
+  <section class="card">
+    <h2>Veículos</h2>
+    <button class="add-btn" onclick="abrirModalCarro()">➕ Adicionar Veículo</button>
+    <div id="listaCarros"></div>
+  </section>
+
+  <section class="card">
+    <h2>Usuários</h2>
+    <button class="add-btn" onclick="abrirModalUsuario()">➕ Novo Usuário</button>
+    <div id="listaUsuarios"></div>
+  </section>
+
+</main>
+
+<!-- MODAL CARRO -->
+<div class="modal" id="modalCarro">
+  <div class="modal-content">
+    <span class="close" onclick="fecharModalCarro()">×</span>
+    <h3>Veículo</h3>
+
+    <input id="nome" placeholder="Nome">
+    <input id="ano" placeholder="Ano">
+    <input id="preco" placeholder="Preço">
+    <input id="km" placeholder="KM">
+    <input id="tipo" placeholder="Tipo">
+    <input id="placa" placeholder="Placa">
+    <input id="cambio" placeholder="Câmbio">
+    <input id="combustivel" placeholder="Combustível">
+    <input id="cor" placeholder="Cor">
+
+    <label><input type="checkbox" id="troca"> Aceita troca</label>
+    <label><input type="checkbox" id="ipva"> IPVA pago</label>
+    <label><input type="checkbox" id="licenciado"> Licenciado</label>
+
+    <input type="file" id="fotos" multiple>
+
+    <button onclick="salvarCarro()">Salvar</button>
+  </div>
+</div>
+
+<!-- MODAL USUARIO -->
+<div class="modal" id="modalUsuario">
+  <div class="modal-content">
+    <span class="close" onclick="fecharModalUsuario()">×</span>
+    <h3>Usuário</h3>
+
+    <input id="u_nome" placeholder="Nome">
+    <input id="u_usuario" placeholder="Usuário">
+    <input id="u_senha" placeholder="Senha">
+    <select id="u_tipo">
+      <option value="cliente">Cliente</option>
+      <option value="admin">Admin</option>
+    </select>
+
+    <button onclick="salvarUsuario()">Salvar</button>
+  </div>
+</div>
+
+<script src="admin.js"></script>
+</body>
+</html>

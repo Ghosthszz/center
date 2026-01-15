@@ -1,0 +1,22 @@
+[
+  {
+    "id": 1,
+    "nome": "Santa Fé 3.3 v6",
+    "ano": "2014",
+    "preco": 98000,
+    "km": 181000,
+    "tipo": "SUV",
+    "placa": "ABC1D23",
+    "cambio": "Automatico",
+    "combustivel": "Gasolina",
+    "cor": "Cinza",
+    "troca": true,
+    "ipva": true,
+    "licenciado": true,
+    "fotos": [
+      "assets/img/veiculos/ABC1D23/first.jpeg",
+      "assets/img/veiculos/ABC1D23/secound.jpeg",
+      "assets/img/veiculos/ABC1D23/terceira.jpeg"
+    ]
+  }
+]

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Login | Center 3 Multimarcas</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- CSS exclusivo do login -->
+  <link rel="stylesheet" href="../../../assets/css/login.css">
+
+  <link rel="icon" href="../../../assets/img/logo.png">
+</head>
+
+<body>
+
+  <div class="login-wrapper">
+
+    <div class="login-container">
+
+      <!-- LOGO -->
+      <div class="login-logo">
+        <img src="../../../assets/img/logo.png" alt="Center 3 Multimarcas">
+      </div>
+
+      <!-- TÍTULO -->
+      <div class="login-title">
+        Acesso ao Sistema
+      </div>
+
+      <!-- ERRO -->
+      <div class="login-error" id="loginError"></div>
+
+      <!-- FORM -->
+      <form onsubmit="return false;">
+
+        <div class="login-field">
+          <input 
+            type="text" 
+            id="usuario" 
+            placeholder="Usuário"
+            autocomplete="username">
+        </div>
+
+        <div class="login-field">
+          <input 
+            type="password" 
+            id="senha" 
+            placeholder="Senha"
+            autocomplete="current-password">
+        </div>
+
+        <div class="login-button">
+          <button type="button" onclick="login()">Entrar</button>
+        </div>
+
+      </form>
+
+      <!-- FOOTER -->
+      <div class="login-footer">
+        © 2026 Center 3 Multimarcas<br>
+        Sistema seguro • Acesso restrito
+      </div>
+
+    </div>
+  </div>
+
+  <script src="../../../assets/js/login.js"></script>
+</body>
+</html>

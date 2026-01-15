@@ -1,0 +1,107 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Arial, sans-serif;
+}
+
+body {
+  background: #0b0b0b;
+  color: #fff;
+}
+
+.admin-header {
+  padding: 20px 30px;
+  background: #111;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #222;
+}
+
+.logout-btn {
+  background: #d00000;
+  border: none;
+  padding: 10px 16px;
+  color: #fff;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.admin-container {
+  padding: 30px;
+  display: grid;
+  gap: 30px;
+}
+
+.card {
+  background: #111;
+  padding: 20px;
+  border-radius: 12px;
+  border: 1px solid #222;
+}
+
+.card h2 {
+  margin-bottom: 15px;
+}
+
+.add-btn {
+  background: #0d6efd;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-bottom: 15px;
+}
+
+.item {
+  padding: 10px;
+  border-bottom: 1px solid #222;
+  display: flex;
+  justify-content: space-between;
+}
+
+.item button {
+  margin-left: 8px;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.8);
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background: #111;
+  padding: 25px;
+  width: 400px;
+  border-radius: 12px;
+}
+
+.modal-content input,
+.modal-content select {
+  width: 100%;
+  padding: 10px;
+  margin: 6px 0;
+  border-radius: 6px;
+  border: none;
+}
+
+.modal-content button {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  background: #d00000;
+  border: none;
+  color: #fff;
+  border-radius: 6px;
+}
+
+.close {
+  float: right;
+  cursor: pointer;
+  font-size: 20px;
+}
