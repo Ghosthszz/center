@@ -13,6 +13,13 @@
       "senha": "copuli",
       "tipo": "admin",
       "nome": "Gustavo Gabanella"
+    },
+    {
+      "uuid": "10c43c28-9687-4dc2-b6c6-a02a10655074",
+      "nome": "Gustavo Amaral Gabanella ",
+      "usuario": "blk",
+      "senha": "cp2805",
+      "tipo": "cliente"
     }
   ]
 }
