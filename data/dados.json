@@ -1,16 +1,18 @@
 {
   "usuarios": [
     {
-      "uuid": "9f2c1a7e-1b44-4f3c-a111-001",
+      "uuid": "c1a2b3",
       "usuario": "user1",
       "senha": "1234",
-      "tipo": "cliente"
+      "tipo": "cliente",
+      "nome": "João Silva"
     },
     {
-      "uuid": "aa99bb88-77cc-66dd-5544-admin",
-      "usuario": "blk",
+      "uuid": "adm001",
+      "usuario": "admin",
       "senha": "copuli",
-      "tipo": "admin"
+      "tipo": "admin",
+      "nome": "GUSTAVO GABANELLA"
     }
   ]
 }
