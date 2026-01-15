@@ -20,6 +20,13 @@
       "usuario": "blk",
       "senha": "cp2805",
       "tipo": "cliente"
+    },
+    {
+      "uuid": "ddc5b96e-b2e9-43a2-a1fe-e2c02ff5f4cf",
+      "nome": "Guilherme lisboa",
+      "usuario": "gui",
+      "senha": "hellen",
+      "tipo": "cliente"
     }
   ]
 }
