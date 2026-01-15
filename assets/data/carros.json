@@ -39,5 +39,22 @@
       "assets/img/veiculos/BGI4E38/BGI4E38_2.jpg",
       "assets/img/veiculos/BGI4E38/BGI4E38_3.jpg"
     ]
+  },
+  {
+    "id": 3,
+    "fotos": [],
+    "nome": "",
+    "ano": "",
+    "preco": 0,
+    "km": 0,
+    "tipo": "",
+    "placa": "",
+    "cambio": "",
+    "combustivel": "",
+    "cor": "",
+    "troca": false,
+    "ipva": false,
+    "licenciado": false,
+    "capa": "assets/img/veiculos//capa.jpg"
   }
 ]
