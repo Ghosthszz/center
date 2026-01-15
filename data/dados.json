@@ -1,13 +1,6 @@
 {
   "usuarios": [
     {
-      "uuid": "c1a2b3",
-      "usuario": "user1",
-      "senha": "1234",
-      "tipo": "cliente",
-      "nome": "João Silva"
-    },
-    {
       "uuid": "adm001",
       "usuario": "admin",
       "senha": "copuli",
