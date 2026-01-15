@@ -18,22 +18,5 @@
       "assets/img/veiculos/ABC1D23/secound.jpeg",
       "assets/img/veiculos/ABC1D23/terceira.jpeg"
     ]
-  },
-  {
-    "id": 3,
-    "fotos": [],
-    "nome": "",
-    "ano": "",
-    "preco": 0,
-    "km": 0,
-    "tipo": "",
-    "placa": "",
-    "cambio": "",
-    "combustivel": "",
-    "cor": "",
-    "troca": false,
-    "ipva": false,
-    "licenciado": false,
-    "capa": "assets/img/veiculos//capa.jpg"
   }
 ]
